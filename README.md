@@ -1,6 +1,6 @@
 # Eternal-Social
 An application/ microservice extension for making social media safer, where ai regulates blockchain and blockchain regulates ai to counter social media threats
-
+![image](https://github.com/user-attachments/assets/8a3618ab-a9cd-4f11-885c-c36d1a92306a)
 
 ## 🚀 Features  
 
