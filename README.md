@@ -45,7 +45,8 @@ An application/ microservice extension for making social media safer, where ai r
 - **Yt video:**
 
 ## UML Diagram:
-- **![UML Diagram (1)](https://github.com/user-attachments/assets/1da2d1da-da2f-4b16-b51f-8efe4b100820)**
+- ![image](https://github.com/user-attachments/assets/b9a532b6-ec8c-48b4-90a5-577ef19b3729)
+
 
 
 ## Demonstration:
