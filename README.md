@@ -1,8 +1,8 @@
 # Eternal-Social
-An application/microservice extension for making social media safer, where AI regulates blockchain, and blockchain regulates AI to counter social media threats.
-
+<p>An application/microservice extension for making social media safer, where AI regulates blockchain, and blockchain regulates AI to counter social media threats.</p>
+<div align="center">
 <img src="https://github.com/user-attachments/assets/8a3618ab-a9cd-4f11-885c-c36d1a92306a" alt="Eternal Social Logo" width="400">
-
+</div>
 ---
 
 ## 🚀 Features  
@@ -42,8 +42,7 @@ An application/microservice extension for making social media safer, where AI re
 - **Blockchain:** Ethereum, Solidity, Smart Contracts  
 - **Backend:** Python (Flask/FastAPI), Web3.py  
 - **Frontend:** HTML, CSS, JS  
-- **Database:** IPFS, PostgreSQL/MongoDB  
-- **Deployment:** Docker, Kubernetes  
+- **Database:** MongoDB  
 
 ---
 
@@ -53,8 +52,9 @@ An application/microservice extension for making social media safer, where AI re
 ---
 
 ## UML Diagram:  
-<img src="https://github.com/user-attachments/assets/b9a532b6-ec8c-48b4-90a5-577ef19b3729" alt="UML Diagram" width="500">
-
+<div align="center">
+<img src="https://github.com/user-attachments/assets/b9a532b6-ec8c-48b4-90a5-577ef19b3729" alt="UML Diagram" width="400">
+</div>
 ---
 
 ## Demonstration:  
