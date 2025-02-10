@@ -37,7 +37,7 @@ An application/ microservice extension for making social media safer, where ai r
 - **AI/ML:** PyTorch, TensorFlow, OpenCV, NLP Models  
 - **Blockchain:** Ethereum, Solidity, Smart Contracts  
 - **Backend:** Python (Flask/FastAPI), Web3.py  
-- **Frontend:** React, TailwindCSS  
+- **Frontend:** HTML, CSS , JS  
 - **Database:** IPFS, PostgreSQL/MongoDB  
 - **Deployment:** Docker, Kubernetes  
 
