@@ -3,6 +3,7 @@
 <div align="center">
 <img src="https://github.com/user-attachments/assets/8a3618ab-a9cd-4f11-885c-c36d1a92306a" alt="Eternal Social Logo" width="400">
 </div>
+
 ---
 
 ## 🚀 Features  
