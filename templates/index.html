@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternal Social</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(45deg, #CC0000, #FFD700);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+    .app-container {
+      display: flex;
+      width: 95%;
+      max-width: 1000px;
+      height: 75vh;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 72px;
+      background: #1a1a1a;
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    .sidebar-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: #333;
+      display: grid;
+      place-items: center;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sidebar-icon:hover, .sidebar-icon.active {
+      background: #CC0000;
+      transform: translateY(-2px);
+    }
+    #chatApp {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: white;
+      padding: 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+    .logo-section img {
+      width: 60px;
+      height: 50px;
+    }
+    .logo-section h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111;
+    }
+    .connect-section {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+    .connect-section input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #eee;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .connect-section input:focus { border-color: #CC0000; outline: none; }
+    .connect-section button {
+      padding: 12px 24px;
+      background: #CC0000;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .connect-section button:hover {
+      background: #b30000;
+      transform: translateY(-1px);
+    }
+    #container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      background: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+    }
+    .message-wrapper {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .message-wrapper img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      margin-right: -15px;
+      z-index: 2;
+    }
+    .message {
+      background: #CC0000;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      margin-left: 25px;
+      max-width: 70%;
+    }
+    .received .message {
+      background: white;
+      color: #111;
+      border: 1px solid #ddd;
+    }
+    .personal .message {
+      background: #CC0000;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+    }
+    .system {
+      background: rgba(0, 0, 0, 0.05);
+      color: #666;
+      text-align: center;
+      margin: 8px auto;
+      font-size: 13px;
+      max-width: 60%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      word-break: break-word;
+    }
+    .input-section {
+      padding: 24px;
+      background: white;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .message-input {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    /* Layout: upload (phone icon) on left, text input in the middle, send arrow on right */
+    .upload-button {
+      padding: 12px 16px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .upload-button:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+    .message-input input {
+      flex: 1;
+      padding: 16px;
+      border: 2px solid #eee;
+      border-radius: 16px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .message-input input:focus { border-color: #CC0000; outline: none; }
+    .message-input #submitButton {
+      width: 48px;
+      height: 48px;
+      background: #CC0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: grid;
+      place-items: center;
+    }
+    .message-input #submitButton:hover {
+      background: #b30000;
+      transform: translateY(-1px);
+    }
+    /* Hidden file input */
+    .message-input input[type="file"] {
+      display: none;
+    }
+    /* Popup styling for notifications */
+    #popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1000;
+    }
+    #popup.show {
+      opacity: 1;
+    }
+    /* Image preview styling */
+    #imagePreview {
+      max-width: 200px;
+      margin: 10px auto;
+      display: none;
+    }
+    @media (max-width: 480px) {
+      .app-container { height: 100vh; border-radius: 0; }
+      .sidebar { width: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Popup message element -->
+  <div id="popup"></div>
+  <!-- Image preview element -->
+  <img id="imagePreview" alt="Image Preview" />
+  <div class="app-container">
+    <div class="sidebar">
+      <div class="sidebar-icon active">💬</div>
+      <div class="sidebar-icon">👥</div>
+      <div class="sidebar-icon">⚡</div>
+      <div class="sidebar-icon">⚙️</div>
+      <div class="sidebar-icon">📊</div>
+      <div class="sidebar-icon">🎮</div>
+      <div class="sidebar-icon">📱</div>
+    </div>
+    <div id="chatApp">
+      <div class="header">
+        <div class="logo-section">
+          <img src="/eternal.png" alt="Eternal Chat Logo" />
+          <h1>Eternal Social</h1>
+        </div>
+        <div class="connect-section">
+          <input type="text" id="ethAddress" placeholder="Enter Ethereum address" />
+          <button id="registerButton">Connect</button>
+          <button id="modeToggle">Empathy Mode: Off</button>
+        </div>
+      </div>
+      <div id="container"></div>
+      <div class="input-section">
+        <div class="message-input">
+          <!-- Upload button (phone icon) on the left -->
+          <button id="uploadButton" class="upload-button">📱</button>
+          <!-- Hidden file input triggered by the upload button -->
+          <input type="file" id="uploadImage" accept="image/*" />
+          <!-- Text input in the middle -->
+          <input type="text" id="inputText" placeholder="Type your message..." />
+          <!-- Send arrow button on the right -->
+          <button id="submitButton">→</button>
+        </div>
+        <!-- Result div to show image prediction result as a caption -->
+        <div id="result" style="text-align:center; margin-top:10px; font-size:16px;"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // --- Integrated JS functions from script.js ---
+    
+    // Show popup message
+    function showPopupMessage(message) {
+      const popup = document.getElementById('popup');
+      popup.textContent = message;
+      popup.classList.add('show');
+      setTimeout(() => {
+        popup.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Preview the uploaded image
+    function previewImage(event) {
+      const imagePreview = document.getElementById('imagePreview');
+      const file = event.target.files[0];
+      if (file) {
+        imagePreview.src = URL.createObjectURL(file);
+        imagePreview.style.display = 'block';
+      }
+    }
+    
+    // --- End of integrated functions ---
+    
+    let myOrder = localStorage.getItem("myOrder") ? parseInt(localStorage.getItem("myOrder"), 10) : 1;
+    let isProfessionalMode = false;
+    // Variable to store the selected image file (if any)
+    let selectedImageFile = null;
+    
+    document.getElementById('modeToggle').addEventListener('click', function() {
+      isProfessionalMode = !isProfessionalMode;
+      this.textContent = 'Empathy Mode: ' + (isProfessionalMode ? 'On' : 'Off');
+    });
+    
+    const socket = new WebSocket(`ws://${window.location.hostname}:8000/ws/${Math.floor(Math.random()*10000)}`);
+    
+    function getProfilePic(message) {
+      if (message.startsWith("YourOrder:")) return "";
+      if (message.startsWith("You:")) return (myOrder % 2 === 0) ? "/wtf.png" : "/profile.png";
+      else if (message.startsWith("Client #")) {
+        const regex = /^Client #(\d+):/;
+        const match = message.match(regex);
+        if (match) {
+          const clientNum = parseInt(match[1], 10);
+          return (clientNum % 2 === 0) ? "/wtf.png" : "/profile.png";
+        }
+      }
+      return "/profile.png";
+    }
+    
+    function showMessage(message, className = '') {
+      const container = document.getElementById('container');
+      // Try parsing as JSON for image messages
+      try {
+        const msgObj = JSON.parse(message);
+        if (msgObj.type === "image") {
+          const wrapper = document.createElement('div');
+          wrapper.className = "message-wrapper system";
+          const img = document.createElement('img');
+          img.src = msgObj.src;
+          img.style.maxWidth = "200px";
+          img.style.display = "block";
+          img.style.margin = "0 auto";
+          const caption = document.createElement('div');
+          caption.textContent = msgObj.caption;
+          caption.style.textAlign = "center";
+          caption.style.marginTop = "5px";
+          wrapper.appendChild(img);
+          wrapper.appendChild(caption);
+          container.appendChild(wrapper);
+          container.scrollTop = container.scrollHeight;
+          return;
+        }
+      } catch(e) {
+        // Not an image message, continue
+      }
+      
+      if (message.startsWith("YourOrder:")) {
+        myOrder = parseInt(message.split(":")[1].trim(), 10);
+        localStorage.setItem("myOrder", myOrder);
+        console.log("Assigned order:", myOrder);
+        return;
+      }
+      if (className.includes("system")) {
+        const sysElem = document.createElement('div');
+        sysElem.textContent = message;
+        sysElem.className = "system";
+        container.appendChild(sysElem);
+        container.scrollTop = container.scrollHeight;
+        return;
+      }
+      const wrapper = document.createElement('div');
+      wrapper.className = "message-wrapper " + className;
+      const img = document.createElement('img');
+      img.src = getProfilePic(message);
+      img.alt = "Profile Picture";
+      const msgElem = document.createElement('div');
+      msgElem.textContent = message;
+      msgElem.className = "message " + className;
+      wrapper.appendChild(img);
+      wrapper.appendChild(msgElem);
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+    
+    socket.addEventListener('open', () => {
+      showMessage('Connected to chat', 'system');
+    });
+    
+    socket.addEventListener('message', (event) => {
+      const message = event.data;
+      console.log("Message received from server:", message);
+      // Try to parse as JSON for image messages
+      try {
+        const parsed = JSON.parse(message);
+        if (parsed.type === "image") {
+          showMessage(message);
+          return;
+        }
+      } catch(e) {
+        // Not an image message, continue
+      }
+      if (message.startsWith("YourOrder:")) {
+        showMessage(message, "");
+      } else if (message.startsWith('You:')) {
+        showMessage(message, 'personal');
+      } else if (message.startsWith('Client #')) {
+        showMessage(message, 'received');
+      } else {
+        showMessage(message, 'system');
+      }
+    });
+    
+    socket.addEventListener('close', () => {
+      showMessage('Connection closed', 'system');
+    });
+    
+    const inputText = document.getElementById('inputText');
+    const submitButton = document.getElementById('submitButton');
+    
+    function sendTextMessage() {
+      const text = inputText.value.trim();
+      const ethAddress = document.getElementById('ethAddress').value.trim();
+      if (text && ethAddress) {
+        socket.send(JSON.stringify({
+          text: text,
+          mode: isProfessionalMode ? 'professional' : 'standard',
+          ethAddress: ethAddress
+        }));
+        inputText.value = '';
+      } else {
+        showMessage('Please enter both a message and your Ethereum address', 'system');
+      }
+    }
+    
+    // When the send arrow button is pressed, check if an image is selected; if so, upload and send it via WebSocket; otherwise, send text.
+    submitButton.addEventListener('click', () => {
+      const ethAddress = document.getElementById('ethAddress').value.trim();
+      if (!ethAddress) {
+        showMessage('Please enter your Ethereum address', 'system');
+        return;
+      }
+      if (selectedImageFile) {
+        const formData = new FormData();
+        formData.append("file", selectedImageFile);
+        formData.append("ethAddress", ethAddress);
+        // First, send the image to the /predict endpoint to get the prediction result.
+        fetch('/predict', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+          const displayMsg = result.result || result.error;
+          // Use FileReader to convert the image file to a base64 data URL.
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const dataURL = e.target.result;
+            // Build an image message object
+            const imageMessage = {
+              type: "image",
+              src: dataURL,
+              caption: displayMsg.toLowerCase() === "fake" ? "Deep Fake" : "Real"
+            };
+            // Send the image message as JSON via WebSocket
+            socket.send(JSON.stringify(imageMessage));
+          };
+          reader.readAsDataURL(selectedImageFile);
+          selectedImageFile = null; // Reset the file after sending
+          document.getElementById('imagePreview').style.display = 'none';
+        })
+        .catch(error => {
+          showMessage('Image upload failed: ' + error, 'system');
+        });
+      } else {
+        sendTextMessage();
+      }
+    });
+    
+    inputText.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        if (inputText.value.trim() !== "") {
+          sendTextMessage();
+        }
+      }
+    });
+    
+    // When the Upload Image (phone icon) button is clicked, trigger the hidden file input
+    document.getElementById('uploadButton').addEventListener('click', function() {
+      document.getElementById('uploadImage').click();
+    });
+    
+    // Image upload handling: store the selected file, show a preview, and display a popup message
+    document.getElementById('uploadImage').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        selectedImageFile = file;
+        previewImage(event);
+        showPopupMessage(`Selected image: ${file.name}`);
+      }
+    });
+    
+    document.querySelectorAll('.sidebar-icon').forEach((icon, index) => {
+      icon.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-icon').forEach(i => i.classList.remove('active'));
+        icon.classList.add('active');
+        if (index === 0) {
+          const ethAddress = document.getElementById('ethAddress').value.trim();
+          if (!ethAddress) {
+            showMessage('Please enter your Ethereum address to unregister', 'system');
+            return;
+          }
+          fetch('/unregister', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ ethAddress: ethAddress })
+          })
+          .then(response => response.json())
+          .then(result => {
+            let displayMsg = result.message || result.error;
+            if (displayMsg.length > 200) {
+              displayMsg = displayMsg.substring(0, 200) + '...';
+            }
+            showMessage(displayMsg, 'system');
+          })
+          .catch(error => {
+            showMessage('Unregistration failed: ' + error, 'system');
+          });
+        }
+      });
+    });
+    
+    document.getElementById('registerButton').addEventListener('click', async () => {
+      const ethAddress = document.getElementById('ethAddress').value.trim();
+      if (!ethAddress) {
+        showMessage('Please enter an Ethereum address', 'system');
+        return;
+      }
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ ethAddress })
+        });
+        const result = await response.json();
+        let displayMsg = result.message || result.error;
+        if (displayMsg.length > 200) {
+          displayMsg = displayMsg.substring(0, 200) + '...';
+        }
+        showMessage(displayMsg, 'system');
+      } catch (error) {
+        showMessage('Registration failed: ' + error, 'system');
+      }
+    });
+  </script>
+</body>
+</html>

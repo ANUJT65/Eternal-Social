@@ -1,0 +1,7 @@
+node_modules/
+.env
+myenv/
+__pycache__/
+build/
+temp_processed_images/
+TrashModels/
