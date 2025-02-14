@@ -174,26 +174,27 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 
 5. Enter the **wallet address** obtained from `truffle develop`.  
    ![Wallet Address](https://github.com/user-attachments/assets/ee31ff68-462a-4d5d-8424-14d7880924bf)  
-6. Use two different wallet addresses for two clients/users and click **Connect**.  
-7. Enjoy the decentralized experience! 🚀  
-   ![Connect and Enjoy](https://github.com/user-attachments/assets/42414274-df18-4fc8-abd1-dd69c7bc0211)  
+6. Use two different wallet addresses for two clients/users and click **Connect**.
+   ![Connect and Enjoy](https://github.com/user-attachments/assets/42414274-df18-4fc8-abd1-dd69c7bc0211)   
+8. Enjoy the decentralized experience! 🚀  
+   
  
 
 
 ## User Interface
 <div align="center">
  
-  <h2>Deep Fake</h2>
-  <img src="https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235" alt="Deep Fake" width="800">
+  <h2>1) Deep Fake</h2>
+  <img src="https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235" alt="Deep Fake" width="600">
 
-  <h2> Fake News</h2>
-  <img src="https://github.com/user-attachments/assets/26dd7f9e-a586-46b2-aced-0a9a506100e6" alt=" Fake News" width="800">
+  <h2>2) Fake News</h2>
+  <img src="https://github.com/user-attachments/assets/26dd7f9e-a586-46b2-aced-0a9a506100e6" alt=" Fake News" width="600">
 
-  <h2>💙 Empathy Mode</h2>
-  <img src="https://github.com/user-attachments/assets/988ad078-ac78-4324-a66d-6b94e5f3ca98" alt="Toxicity" width="800">
+  <h2>💙3) Empathy Mode</h2>
+  <img src="https://github.com/user-attachments/assets/988ad078-ac78-4324-a66d-6b94e5f3ca98" alt="Toxicity" width="600">
 
-  <h2>☣️ Toxicity</h2>
-  <img src="https://github.com/user-attachments/assets/0cac4163-83d7-4c3d-89ab-e7fa047c2a03" alt="Additional Feature" width="800">
+  <h2>☣️4) Toxicity</h2>
+  <img src="https://github.com/user-attachments/assets/0cac4163-83d7-4c3d-89ab-e7fa047c2a03" alt="Additional Feature" width="600">
 </div>
 
 
