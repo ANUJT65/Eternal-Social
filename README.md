@@ -3,6 +3,19 @@
 <h1>♾️🌍  Eternal Social  💫♾️</h1>
 <img src="https://github.com/user-attachments/assets/4547cd23-b1c6-4745-aa96-12744f419ed3" alt="Eternal Social Logo" width="800">
 </div>  
+## My Motivation
+
+In 12th grade during COVID, I was glued to the news and bombarded by insults and racist comments—statements like "Indians are bad" or "unhygienic" were rampant on YouTube,etc and other platforms, often fueled by bots from abroad. I even tried defending my country in the comments, not realizing how much time these toxic interactions were stealing from me, i was immature and it was my first interaction with social media.
+
+The algorithms failed miserably at stopping hate speech or even fake news. I was constantly tormented by endless right-wing versus left-wing debates, leaving me in an identity crisis. Should I support a government that was allegedly destroying India or one that claimed to be improving it? This constant fear-mongering, mixed with relentless spin, not only wasted precious time but also took a toll on my mental health by  alot. I still cant imagine what is going on in this country with all these things affecting youngsters even today.
+
+So when you posted on  LinkedIn about the need of empathy , it  ignited a hidden fire within me.
+I just developed this platform within these 7 days with skills I had gained from previous projects
+This was the first time i used **blockchain and ai agents** , to build **Eternal Social**—a self-monitoring social media platform that integrates blockchain with AI to counter online toxicity.
+
+As I matured, I realized that divisiveness wasn’t about truth at all—it was about serving hidden agendas. Even today, we witness riots sparked by fake news and countless lives shattered by deep fakes
+
+This revelation made me even more determined to create a space where empathy and transparency can win over hate and manipulation of facts. Though still a work in progress, I believe Eternal Social will pave the way for a safer, more compassionate digital future.
 
 ### **Introduction**
 **Eternal Social** is a next-generation social media platform where **AI regulates user interactions**, and **blockchain ensures AI's accountability**. Unlike traditional moderation methods that rely on human intervention, Eternal Social leverages **decentralized AI moderation** to maintain transparency, fairness, and accuracy and accountability of the system. Which in turn reduces the need for manual intervention and would help social media platforms regulate themselves by autonomous systems.
