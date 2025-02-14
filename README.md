@@ -75,7 +75,7 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 
 - **AI/ML:** PyTorch, Gemini Model
 - **Blockchain:** Ethereum, Solidity, Smart Contracts  
-- **Backend:** Python (Flask/FastAPI), Web3.py  
+- **Backend:** Python (FastAPI), Web3.py  
 - **Frontend:** HTML, CSS, JS  
 ---
 
