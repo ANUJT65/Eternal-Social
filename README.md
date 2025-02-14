@@ -79,8 +79,81 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 - **Frontend:** HTML, CSS, JS  
 ---
 
-## How to deploy??  
-- **YouTube Video:** [Deployment Tutorial](#)
+# **How to Deploy Eternal-Social**  
+
+## **Part 1: Smart Contract Deployment**  
+1. Open a terminal and navigate to the project folder:  
+   ```sh
+   cd Eternal-Social
+   ```  
+2. Install Truffle globally if not installed:  
+   ```sh
+   npm install -g truffle
+   ```  
+3. Initialize Truffle:  
+   ```sh
+   truffle init
+   ```  
+4. Compile the smart contracts:  
+   ```sh
+   truffle compile
+   ```  
+5. Start a Truffle development blockchain:  
+   ```sh
+   truffle develop
+   ```  
+6. Deploy the contracts:  
+   ```sh
+   migrate
+   ```  
+7. After migration, you will get a contract address. Copy this address.  
+   ![Contract Address](https://github.com/user-attachments/assets/1ecaa0a6-4e4d-4151-bbf0-013215cf47b6)  
+8. Open `app3.py` and replace `deployed_contract_address` with the new contract address.  
+   - Use **Ctrl+F** to find `deployed_contract_address`.  
+   ![Replace Contract Address](https://github.com/user-attachments/assets/fc989ef1-9963-4ca9-9121-a2f96bb376c9)  
+
+---  
+
+## **Part 2: Running the Backend**  
+1. Open another terminal and install dependencies:  
+   ```sh
+   pip install -r requirements.txt
+   ```  
+2. Ensure all required libraries are updated to the latest versions.  
+3. Start the FastAPI server:  
+   ```sh
+   python -m uvicorn app3:app --reload
+   ```  
+4. Open your browser and go to:  
+   ```
+   http://127.0.0.1:8000/
+   ```  
+   - Open **two tabs** of this URL.  
+   ![Server Running](https://github.com/user-attachments/assets/f182830c-e6a7-4a73-a310-b1ac188f2ac0)  
+
+5. Enter the **wallet address** obtained from `truffle develop`.  
+   ![Wallet Address](https://github.com/user-attachments/assets/ee31ff68-462a-4d5d-8424-14d7880924bf)  
+6. Use two different wallet addresses for two clients/users and click **Connect**.  
+7. Enjoy the decentralized experience! 🚀  
+   ![Connect and Enjoy](https://github.com/user-attachments/assets/42414274-df18-4fc8-abd1-dd69c7bc0211)  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## User Interface
 
 ![image](https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235)
