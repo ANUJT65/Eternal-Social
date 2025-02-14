@@ -157,10 +157,19 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
  
 
 
-
 ## User Interface
 
 ![image](https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235)
+**Fake News**
+![image](https://github.com/user-attachments/assets/26dd7f9e-a586-46b2-aced-0a9a506100e6)
+**Deep Fake Detection**
+![image](https://github.com/user-attachments/assets/0c6836a4-4a93-4613-af0f-26f67de9d4aa)
+**Emapthy Mode**
+![image](https://github.com/user-attachments/assets/988ad078-ac78-4324-a66d-6b94e5f3ca98)
+**Toxicity**
+![image](https://github.com/user-attachments/assets/0cac4163-83d7-4c3d-89ab-e7fa047c2a03)
+
+
 
 ## References(If you want to know more of how to use / deploy websockets and blockchain you could check the following articles out!
 - https://www.geeksforgeeks.org/what-is-web-socket-and-how-it-is-different-from-the-http/
