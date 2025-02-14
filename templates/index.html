@@ -161,6 +161,23 @@
       border-radius: 12px;
       word-break: break-word;
     }
+    .news-alert {
+      background: #f9edbe;
+      color: #222;
+      border: 1px solid #f0c36d;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 8px auto;
+      max-width: 90%;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      animation: slideDown 0.5s ease-out;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .input-section {
       padding: 24px;
       background: white;
@@ -171,7 +188,6 @@
       gap: 12px;
       align-items: center;
     }
-    /* Layout: upload (phone icon) on left, text input in the middle, send arrow on right */
     .upload-button {
       padding: 12px 16px;
       background: #007BFF;
@@ -211,11 +227,9 @@
       background: #b30000;
       transform: translateY(-1px);
     }
-    /* Hidden file input */
     .message-input input[type="file"] {
       display: none;
     }
-    /* Popup styling for notifications */
     #popup {
       position: fixed;
       top: 20px;
@@ -231,11 +245,18 @@
     #popup.show {
       opacity: 1;
     }
-    /* Image preview styling */
-    #imagePreview {
-      max-width: 200px;
-      margin: 10px auto;
+    #fileInfo {
       display: none;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
     @media (max-width: 480px) {
       .app-container { height: 100vh; border-radius: 0; }
@@ -244,10 +265,7 @@
   </style>
 </head>
 <body>
-  <!-- Popup message element -->
   <div id="popup"></div>
-  <!-- Image preview element -->
-  <img id="imagePreview" alt="Image Preview" />
   <div class="app-container">
     <div class="sidebar">
       <div class="sidebar-icon active">💬</div>
@@ -273,24 +291,18 @@
       <div id="container"></div>
       <div class="input-section">
         <div class="message-input">
-          <!-- Upload button (phone icon) on the left -->
           <button id="uploadButton" class="upload-button">📱</button>
-          <!-- Hidden file input triggered by the upload button -->
           <input type="file" id="uploadImage" accept="image/*" />
-          <!-- Text input in the middle -->
           <input type="text" id="inputText" placeholder="Type your message..." />
-          <!-- Send arrow button on the right -->
           <button id="submitButton">→</button>
         </div>
-        <!-- Result div to show image prediction result as a caption -->
+        <div id="fileInfo"></div>
         <div id="result" style="text-align:center; margin-top:10px; font-size:16px;"></div>
       </div>
     </div>
   </div>
   <script>
-    // --- Integrated JS functions from script.js ---
-    
-    // Show popup message
+    // Popup function
     function showPopupMessage(message) {
       const popup = document.getElementById('popup');
       popup.textContent = message;
@@ -300,21 +312,8 @@
       }, 3000);
     }
     
-    // Preview the uploaded image
-    function previewImage(event) {
-      const imagePreview = document.getElementById('imagePreview');
-      const file = event.target.files[0];
-      if (file) {
-        imagePreview.src = URL.createObjectURL(file);
-        imagePreview.style.display = 'block';
-      }
-    }
-    
-    // --- End of integrated functions ---
-    
     let myOrder = localStorage.getItem("myOrder") ? parseInt(localStorage.getItem("myOrder"), 10) : 1;
     let isProfessionalMode = false;
-    // Variable to store the selected image file (if any)
     let selectedImageFile = null;
     
     document.getElementById('modeToggle').addEventListener('click', function() {
@@ -338,31 +337,18 @@
       return "/profile.png";
     }
     
+    // Function to show regular text messages
     function showMessage(message, className = '') {
       const container = document.getElementById('container');
-      // Try parsing as JSON for image messages
-      try {
-        const msgObj = JSON.parse(message);
-        if (msgObj.type === "image") {
-          const wrapper = document.createElement('div');
-          wrapper.className = "message-wrapper system";
-          const img = document.createElement('img');
-          img.src = msgObj.src;
-          img.style.maxWidth = "200px";
-          img.style.display = "block";
-          img.style.margin = "0 auto";
-          const caption = document.createElement('div');
-          caption.textContent = msgObj.caption;
-          caption.style.textAlign = "center";
-          caption.style.marginTop = "5px";
-          wrapper.appendChild(img);
-          wrapper.appendChild(caption);
-          container.appendChild(wrapper);
-          container.scrollTop = container.scrollHeight;
-          return;
-        }
-      } catch(e) {
-        // Not an image message, continue
+      
+      // Check for news alert messages
+      if (message.startsWith("NEWS-ALERT:")) {
+        const newsAlertElem = document.createElement('div');
+        newsAlertElem.textContent = message.replace("NEWS-ALERT:", "").trim();
+        newsAlertElem.className = "news-alert";
+        container.appendChild(newsAlertElem);
+        container.scrollTop = container.scrollHeight;
+        return;
       }
       
       if (message.startsWith("YourOrder:")) {
@@ -393,32 +379,58 @@
       container.scrollTop = container.scrollHeight;
     }
     
-    socket.addEventListener('open', () => {
-      showMessage('Connected to chat', 'system');
-    });
+    // Function to show image messages
+    function showImageMessage(messageObj) {
+      const container = document.getElementById('container');
+      const wrapper = document.createElement('div');
+      wrapper.className = "message-wrapper system"; // Adjust class as desired
+      const img = document.createElement('img');
+      img.src = messageObj.src;
+      img.alt = "Uploaded Image";
+      img.style.maxWidth = "200px";
+      img.style.display = "block";
+      img.style.margin = "0 auto";
+      const caption = document.createElement('div');
+      caption.textContent = messageObj.caption;
+      caption.style.textAlign = "center";
+      caption.style.marginTop = "5px";
+      wrapper.appendChild(img);
+      wrapper.appendChild(caption);
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
     
+    // Socket message event handler
     socket.addEventListener('message', (event) => {
       const message = event.data;
       console.log("Message received from server:", message);
-      // Try to parse as JSON for image messages
+      
       try {
         const parsed = JSON.parse(message);
-        if (parsed.type === "image") {
-          showMessage(message);
+        if (parsed.type && parsed.type === "image") {
+          showImageMessage(parsed);
           return;
         }
       } catch(e) {
-        // Not an image message, continue
+        // Not an image JSON message, continue processing as text.
       }
+      
+      // Process text messages
       if (message.startsWith("YourOrder:")) {
         showMessage(message, "");
       } else if (message.startsWith('You:')) {
         showMessage(message, 'personal');
       } else if (message.startsWith('Client #')) {
         showMessage(message, 'received');
+      } else if (message.startsWith("NEWS-ALERT:")) {
+        showMessage(message, 'news-alert');
       } else {
         showMessage(message, 'system');
       }
+    });
+    
+    socket.addEventListener('open', () => {
+      showMessage('Connected to chat', 'system');
     });
     
     socket.addEventListener('close', () => {
@@ -443,7 +455,6 @@
       }
     }
     
-    // When the send arrow button is pressed, check if an image is selected; if so, upload and send it via WebSocket; otherwise, send text.
     submitButton.addEventListener('click', () => {
       const ethAddress = document.getElementById('ethAddress').value.trim();
       if (!ethAddress) {
@@ -454,7 +465,6 @@
         const formData = new FormData();
         formData.append("file", selectedImageFile);
         formData.append("ethAddress", ethAddress);
-        // First, send the image to the /predict endpoint to get the prediction result.
         fetch('/predict', {
           method: 'POST',
           body: formData
@@ -462,7 +472,6 @@
         .then(response => response.json())
         .then(result => {
           const displayMsg = result.result || result.error;
-          // Use FileReader to convert the image file to a base64 data URL.
           const reader = new FileReader();
           reader.onload = function(e) {
             const dataURL = e.target.result;
@@ -476,8 +485,8 @@
             socket.send(JSON.stringify(imageMessage));
           };
           reader.readAsDataURL(selectedImageFile);
-          selectedImageFile = null; // Reset the file after sending
-          document.getElementById('imagePreview').style.display = 'none';
+          selectedImageFile = null;
+          document.getElementById('fileInfo').style.display = 'none';
         })
         .catch(error => {
           showMessage('Image upload failed: ' + error, 'system');
@@ -495,17 +504,17 @@
       }
     });
     
-    // When the Upload Image (phone icon) button is clicked, trigger the hidden file input
     document.getElementById('uploadButton').addEventListener('click', function() {
       document.getElementById('uploadImage').click();
     });
     
-    // Image upload handling: store the selected file, show a preview, and display a popup message
     document.getElementById('uploadImage').addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (file) {
         selectedImageFile = file;
-        previewImage(event);
+        const fileInfoDiv = document.getElementById('fileInfo');
+        fileInfoDiv.textContent = "Selected file: " + file.name;
+        fileInfoDiv.style.display = 'block';
         showPopupMessage(`Selected image: ${file.name}`);
       }
     });

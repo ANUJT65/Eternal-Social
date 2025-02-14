@@ -7,6 +7,9 @@ import sys
 import os
 from typing import List
 
+import requests
+from bs4 import BeautifulSoup
+
 import torch
 import timm
 import torch.nn as nn
@@ -183,6 +186,73 @@ def predict_with_model(model, image_path, preprocess_fn, switch_labels=False):
 class_names = ['Real', 'Fake']
 
 # ---------------------------
+# Scraping Functions for AltNews and OpIndia
+# ---------------------------
+def scrape_altnews(query: str) -> list:
+    try:
+        url = f"https://www.altnews.in/?s={requests.utils.quote(query)}"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        response = requests.get(url, headers=headers, timeout=10)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        articles = []
+        for article in soup.find_all('article')[:3]:
+            title_elem = article.find('h2', class_='entry-title')
+            if title_elem and title_elem.a:
+                title = title_elem.a.get_text(strip=True)
+                link = title_elem.a.get('href')
+                excerpt_elem = article.find('div', class_='entry-content')
+                excerpt = excerpt_elem.get_text(strip=True) if excerpt_elem else "No excerpt available"
+                articles.append({
+                    'title': title,
+                    'link': link,
+                    'excerpt': excerpt,
+                    'source': 'AltNews'
+                })
+        return articles
+    except Exception as e:
+        logger.error(f"Error scraping AltNews: {e}")
+        return []
+
+def scrape_opindia(query: str) -> list:
+    try:
+        url = f"https://www.opindia.com/?s={requests.utils.quote(query)}"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        response = requests.get(url, headers=headers, timeout=10)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        articles = []
+        for article in soup.find_all('article', class_='jeg_post')[:3]:
+            title_elem = article.find('h3', class_='jeg_post_title')
+            if title_elem and title_elem.a:
+                title = title_elem.a.get_text(strip=True)
+                link = title_elem.a.get('href')
+                excerpt_elem = article.find('div', class_='jeg_post_excerpt')
+                excerpt = excerpt_elem.get_text(strip=True) if excerpt_elem else "No excerpt available"
+                articles.append({
+                    'title': title,
+                    'link': link,
+                    'excerpt': excerpt,
+                    'source': 'OpIndia'
+                })
+        return articles
+    except Exception as e:
+        logger.error(f"Error scraping OpIndia: {e}")
+        return []
+
+# ---------------------------
+# Utility: Check for Reportage Keywords
+# ---------------------------
+def contains_reportage_keywords(text: str) -> bool:
+    keywords = [
+        "report", "breaking", "coverage", "incident", 
+        "alleged", "sources", "analysis", "update", 
+        "news", "confirmed"
+    ]
+    text_lower = text.lower()
+    result = any(kw in text_lower for kw in keywords)
+    logger.debug(f"Reportage keyword detection for '{text}': {result}")
+    return result
+
+# ---------------------------
 # Image Prediction Endpoint
 # ---------------------------
 @app.post("/predict")
@@ -239,17 +309,44 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 async def process_text(text: str, mode: str) -> str:
-    if mode != "professional":
+    # Don't modify if not in professional mode or if it's a simple greeting
+    if mode != "professional" or text.strip().lower() in ["hi", "hello", "hey"]:
         return text
+        
     try:
         prompt = f"""
-You are a professional language enhancer. Modify the input text to be more professional and courteous without changing its meaning.
-Text: '{text}'
-Return only the modified text.
-"""
+Transform the following message into constructive and empathetic feedback while preserving the core meaning.
+Examples of transformations:
+- "this app sucks" -> "This application could benefit from some improvements"
+- "terrible service" -> "The service quality needs enhancement"
+- "worst product ever" -> "This product has significant room for improvement"
+- "you're so slow" -> "The response time could be more efficient"
+- "this is garbage" -> "This could be enhanced to better meet user expectations"
+
+Guidelines:
+- Convert negative criticism into constructive feedback
+- Maintain the core issue being raised
+- Use professional and respectful language
+- Focus on improvement opportunities
+- Be specific about what could be better
+- Keep the tone balanced and solution-oriented
+- DO NOT RESPOND TO PREVIOUS FEEDBACKS...JUST CONVERT THE INPUT TEXT TO A POSITIVE TONE
+- DO NOT RESPOND TO INPUTS
+- DO NOT USE [] TAGS AND BRACKETS WHILE ADDRESSING, ONLY USE PERSONAL NOUNS YOU , WE, THE etc.
+- DO NOT THANK THE USER FOR THE FEEDBACK, JUST CONVERT THE INPUT TEXT TO A POSITIVE TONE
+
+Original message: "{text}"
+
+Respond with ONLY the transformed message, without any explanations."""
         response = await asyncio.to_thread(chat_session.send_message, prompt)
         processed = response.text.strip()
-        logger.debug(f"Processed text: '{processed}'")
+        
+        # Take only the first non-empty line
+        processed_lines = [line for line in processed.splitlines() if line.strip()]
+        if processed_lines:
+            processed = processed_lines[0]
+            
+        logger.debug(f"Original text: '{text}' -> Processed text: '{processed}'")
         return processed
     except Exception as e:
         logger.error(f"Error in process_text: {e}")
@@ -273,40 +370,114 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
                 logger.error("Error parsing message: " + str(e))
                 continue
             
-            # If message contains a "type" field and it's "image", broadcast it directly.
+            # Handle image messages directly
             if message_data.get("type") == "image":
-                # Broadcast the raw JSON string (image message) to all connections
                 await manager.broadcast(data, websocket)
-                # Optionally, send it back to sender as well:
                 await manager.send_personal_message(data, websocket)
-            else:
-                # Otherwise, assume it's a text message.
-                text = message_data.get('text', '')
-                mode = message_data.get('mode', '')
-                user_account = message_data.get('ethAddress', '')
-                logger.info(f"Received text message from client #{websocket.client_order}: '{text}' (Mode: {mode}, Account: {user_account})")
+                continue
                 
-                if text:
-                    processed_text = await process_text(text, mode)
-                    logger.debug(f"Processed text for Client #{websocket.client_order}: {processed_text}")
-                    await manager.send_personal_message(f"You: {text}", websocket)
-                    await manager.broadcast(f"Client #{websocket.client_order}: {processed_text}", websocket)
+            text = message_data.get('text', '')
+            mode = message_data.get('mode', '')
+            user_account = message_data.get('ethAddress', '')
+            
+            # ----- Automatic Reportage Analysis Trigger -----
+            if contains_reportage_keywords(text):
+                news_query = text.strip()
+                logger.info(f"Detected news-related text. Using query: {news_query}")
+                alt_articles = scrape_altnews(news_query)
+                opindia_articles = scrape_opindia(news_query)
+                logger.debug(f"AltNews results {alt_articles}")
+                logger.debug(f"OpIndia results {opindia_articles}")
+                
+                if alt_articles:
+                    left_summary = f"{alt_articles[0]['title']}\n{alt_articles[0]['excerpt']}\nLink {alt_articles[0]['link']}"
+                else:
+                    left_summary = "No left wing articles found."
+                if opindia_articles:
+                    right_summary = f"{opindia_articles[0]['title']}\n{opindia_articles[0]['excerpt']}\nLink {opindia_articles[0]['link']}"
+                else:
+                    right_summary = "No right wing articles found."
+                
+                gemini_prompt = f"""
+Act as an impartial fact-checker analyzing news coverage.
+Below are two sources.
+
+Right Wing Source
+{right_summary}
+
+Left Wing Source
+{left_summary}
+
+Provide a one-line unbiased analysis that highlights any bias present in these sources.
+"""
+                logger.debug(f"Gemini prompt\n{gemini_prompt}")
+                try:
+                    bias_response = await asyncio.to_thread(chat_session.send_message, gemini_prompt)
+                    logger.debug(f"Raw Gemini response: {bias_response.text}")
+                    bias_analysis_lines = [line for line in bias_response.text.strip().splitlines() if line.strip()]
+                    bias_analysis = bias_analysis_lines[0] if bias_analysis_lines else "No bias analysis available."
+                except Exception as e:
+                    logger.error(f"Error getting bias analysis from Gemini: {e}")
+                    bias_analysis = "Error: Gemini analysis not available."
+                
+                final_output = (
+                    f"NEWS-ALERT\nRight Wing Source\n{right_summary}\n\n"
+                    f"Left Wing Source\n{left_summary}\n\n"
+                    f"Gemini Analysis of Bias\n{bias_analysis}"
+                )
+                logger.info(f"Final composite news output:\n{final_output}")
+                await manager.broadcast(final_output, websocket)
+                await manager.send_personal_message(final_output, websocket)
+                continue
+            # ----- End of News Analysis -----
+            
+            # Regular Chat Processing
+            if text:
+                # Show original message to sender
+                await manager.send_personal_message(f"You: {text}", websocket)
+                
+                # Process message if in professional mode
+                if mode == "professional":
+                    modified_text = await process_text(text, mode)
                     
-                    # Reputation adjustment logic for text messages
-                    let_adjustment = 0
-                    if mode == "professional":
-                        let_adjustment += 1
-                    if "fake" in text.lower():
-                        let_adjustment -= 50
-                    bad_detected = [bad for bad in BAD_WORDS if bad in text.lower()]
-                    if bad_detected:
-                        let_adjustment -= 5
-                        await manager.send_personal_message(f"Bad words detected: {', '.join(bad_detected)}", websocket)
-                    if let_adjustment != 0 and user_account:
-                        new_rep = update_reputation(let_adjustment, user_account)
-                        if new_rep is not None:
-                            await manager.send_personal_message(f"Reputation updated: {new_rep}", websocket)
-            # End of message processing loop
+                    # Show the conversion to the sender
+                    if modified_text != text:
+                        await manager.send_personal_message(
+                            f"System: Your message was made more constructive: '{modified_text}'",
+                            websocket
+                        )
+                    
+                    # Send modified version to others
+                    await manager.broadcast(f"Client #{websocket.client_order}: {modified_text}", websocket)
+                else:
+                    # Send original version to others if not in professional mode
+                    await manager.broadcast(f"Client #{websocket.client_order}: {text}", websocket)
+                
+                # Handle reputation adjustments
+                rep_adjustment = 0
+                if mode == "professional":
+                    rep_adjustment += 1
+                if "fake" in text.lower():
+                    rep_adjustment -= 50
+                
+                # Check for bad words
+                bad_detected = [bad for bad in BAD_WORDS if bad in text.lower()]
+                if bad_detected:
+                    rep_adjustment -= 5
+                    await manager.send_personal_message(
+                        f"System: Please note: Some words were flagged as inappropriate.", 
+                        websocket
+                    )
+                
+                # Update reputation for non-trivial messages
+                if text.strip().lower() not in ["hi", "hello", "hey"] and rep_adjustment != 0 and user_account:
+                    new_rep = update_reputation(rep_adjustment, user_account)
+                    if new_rep is not None:
+                        await manager.send_personal_message(
+                            f"System: Reputation updated to: {new_rep}",
+                            websocket
+                        )
+                            
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         logger.info(f"Client #{websocket.client_order} disconnected.")
