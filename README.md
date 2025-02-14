@@ -1,8 +1,31 @@
 
+# Table of Contents
+
+| Section |
+|--------------------------------------|
+| [Introduction](#introduction) |
+| [Eternal Social: The Vision](#eternal-social-the-vision) |
+| [Core Technologies](#core-technologies) |
+| [Key Features](#key-features) |
+| [System Architecture](#system-architecture) |
+| [Tech Stack](#tech-stack) |
+| [Deployment Guide](#deployment-guide) |
+| [User Interface](#user-interface) |
+| [References](#references) |
+| [Demonstration](#demonstration) |
+
+
+
+## 🎥 Demonstration Video  (Click on thumbnail/Pic) Please do read below before going through the video
+
 <div align="center">
-<h1>♾️🌍  Eternal Social  💫♾️</h1>
-<img src="https://github.com/user-attachments/assets/4547cd23-b1c6-4745-aa96-12744f419ed3" alt="Eternal Social Logo" width="800">
-</div>  
+ <h1>♾️🌍  Eternal Social  💫♾️</h1>
+  <a href="https://youtu.be/1eY18p3zJd4" target="_blank">
+    <img src="https://img.youtube.com/vi/1eY18p3zJd4/maxresdefault.jpg" alt="Watch on YouTube" width="800">
+  </a>
+</div>
+
+
 
 ### **My Motivation**
 
@@ -158,16 +181,20 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 
 
 ## User Interface
+<div align="center">
+ 
+  <h2>Deep Fake</h2>
+  <img src="https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235" alt="Deep Fake" width="800">
 
-![image](https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235)
-**Fake News**
-![image](https://github.com/user-attachments/assets/26dd7f9e-a586-46b2-aced-0a9a506100e6)
-**Deep Fake Detection**
-![image](https://github.com/user-attachments/assets/0c6836a4-4a93-4613-af0f-26f67de9d4aa)
-**Emapthy Mode**
-![image](https://github.com/user-attachments/assets/988ad078-ac78-4324-a66d-6b94e5f3ca98)
-**Toxicity**
-![image](https://github.com/user-attachments/assets/0cac4163-83d7-4c3d-89ab-e7fa047c2a03)
+  <h2> Fake News</h2>
+  <img src="https://github.com/user-attachments/assets/26dd7f9e-a586-46b2-aced-0a9a506100e6" alt=" Fake News" width="800">
+
+  <h2>💙 Empathy Mode</h2>
+  <img src="https://github.com/user-attachments/assets/988ad078-ac78-4324-a66d-6b94e5f3ca98" alt="Toxicity" width="800">
+
+  <h2>☣️ Toxicity</h2>
+  <img src="https://github.com/user-attachments/assets/0cac4163-83d7-4c3d-89ab-e7fa047c2a03" alt="Additional Feature" width="800">
+</div>
 
 
 
@@ -178,7 +205,7 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 - https://www.geeksforgeeks.org/deploy-a-smart-contract-on-ethereum-with-python-truffle-and-web3py/
 
 ## Demonstration:  
-- **YouTube Video:** [Demonstration](#)
+- **YouTube Video:** [Demonstration](https://youtu.be/1eY18p3zJd4)
 - **Testing**
 - Etherium Wallet address1:0x424f87f4d1a8e8890d8b3CdECd20000ED21006E8
 - Etherium Wallet address2: 0xA114B7448c51C1B84668D5B08C29E1c6cC4dB3E2
