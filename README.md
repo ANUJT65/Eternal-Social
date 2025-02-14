@@ -158,7 +158,7 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 
 ![image](https://github.com/user-attachments/assets/fb907228-d5a7-408e-b79a-0c8ac0c36235)
 
-## References
+## References(If you want to know more of how to use / deploy websockets and blockchain you could check the following articles out!
 - https://www.geeksforgeeks.org/what-is-web-socket-and-how-it-is-different-from-the-http/
 - https://medium.com/walmartglobaltech/leveraging-web-sockets-for-powering-chat-platforms-38a4629b9688
 - https://www.geeksforgeeks.org/simple-chat-application-using-websockets-with-fastapi/
