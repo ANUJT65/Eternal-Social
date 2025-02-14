@@ -45,7 +45,7 @@ app.add_middleware(
 # ---------------------------
 # API Keys & Configuration
 # ---------------------------
-GOOGLE_API_KEY = "AIzaSyCmkNS6tkGotGtWBEri3Ur0EjQ2fjbAvig"  # Replace with your Gemini API key
+GOOGLE_API_KEY = " "  # Replace with your Gemini API key
 
 # ---------------------------
 # Logging Setup
