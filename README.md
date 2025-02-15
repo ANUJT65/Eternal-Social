@@ -70,7 +70,7 @@ The **future of social media moderation** will be entirely **AI-driven**, elimin
 - **Fake news detection** through AI-powered cross-referencing.  
 - **Deepfake identification** using advanced deep learning models.  
 
-## **Why Blockchain? And Why This System?**  
+## 🌐 **Why Blockchain? And Why This System?** 🌐⛓️ 
 
 AI must be **held accountable**, which is why **blockchain integration** is essential. By recording moderation actions on an **immutable ledger**, Eternal Social ensures:  
 
