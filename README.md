@@ -30,17 +30,20 @@
 ### **My Motivation**
 
 In 12th grade during COVID, I was glued to the news and bombarded by insults and racist comments—statements like "Indians are bad" or "toiletless country" , "they should first learn hygiene
-"(many more things, i am just putting some mild ones down) were rampant on YouTube and other social media platforms, ften fueled by misinformation and amplified by bots and external influences. 
+"(many more things, i am just putting some mild ones down) were rampant on YouTube and other social media platforms, often fueled by misinformation and amplified by bots and external influences. Critisim should be there for all the things but it should be constructive and not outright rude/racist.
+
 
 I even tried defending my country in the comments as I loved my country(still do and will continue to work towards making it better) , not realizing how much time these toxic interactions were stealing from me,it seems silly but i was immature and it was my first interaction with social media. I wish someone guided me back then or atleast someone was there to protect me from the toxicity.
 
 The algorithms failed miserably at stopping hate speech or even fake news. I was constantly tormented/taunted by endless right-wing versus left-wing debates, leaving me in an identity crisis. Should I support a government that was allegedly destroying India or one that claimed to be improving it? This constant fear-mongering, mixed with relentless spins in opinions, not only wasted precious time but also took a toll on my mental health by alot. I still cant imagine how all these things are affecting youngsters even today.
 
-So when you posted on LinkedIn about the need of empathy, it ignited a hidden fire within me.
+So when you posted on LinkedIn about the need of empathy,  it struck a deep chord with me. It reignited a fire I didn’t even realize was there.
 I just developed this platform within these 7 days with skills I had gained from previous projects
 This was the first time i used **blockchain and ai agents** , to build **Eternal Social**—a self-monitoring social media platform that integrates blockchain with AI to counter online toxicity.
 
-As I matured, I realized that divisiveness wasn’t about truth at all—it was about serving hidden agendas. Even today, we witness riots sparked by fake news and countless lives shattered by deep fakes
+As I matured, I realized that divisiveness wasn’t about truth at all—it was about serving hidden agendas. Even today, we witness riots sparked by fake news , countless lives shattered by deep fakes and social media remains a breeding ground for hate.
+
+We often talk about ending racism, hate speech etc...we have the technology to do it...yet we dont. The end of racism starts from ending racism on social media, i feel like we have the tools, we have the money but we dont really have the will to end it. 
 
 This revelation made me even more determined to create a space where empathy and transparency can win over hate and manipulation of facts. Though still a work in progress, I believe Eternal Social will pave the way for a safer, more compassionate digital future.
 
