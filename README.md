@@ -163,7 +163,11 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
    ![Replace Contract Address](https://github.com/user-attachments/assets/fc989ef1-9963-4ca9-9121-a2f96bb376c9)  
 
 ---  
-
+## Intermediate:
+1. Get a gemini key https://ai.google.dev/gemini-api/docs/api-key
+2. Ctrl + F and find GOOGLE_API_KEY in app3.py
+   
+--
 ## **Part 2: Running the Backend**  
 1. Open another terminal and install dependencies:  
    ```sh
@@ -184,8 +188,9 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 5. Enter the **wallet address** obtained from `truffle develop`.  
    ![Wallet Address](https://github.com/user-attachments/assets/ee31ff68-462a-4d5d-8424-14d7880924bf)  
 6. Use two different wallet addresses for two clients/users and click **Connect**.
-   ![Connect and Enjoy](https://github.com/user-attachments/assets/42414274-df18-4fc8-abd1-dd69c7bc0211)   
-8. Enjoy the decentralized experience! 🚀  
+   ![Connect and Enjoy](https://github.com/user-attachments/assets/42414274-df18-4fc8-abd1-dd69c7bc0211)
+7. Enjoy the decentralized experience! 🚀
+     
    
  
 
