@@ -29,13 +29,14 @@
 
 ### **My Motivation**
 
-In 12th grade during COVID, I was glued to the news and bombarded by insults and racist comments—statements like "Indians are bad" or "India is a bad Country" , " "Undeveloped" were rampant on YouTube,etc and other platforms, often fueled by bots from abroad. 
+In 12th grade during COVID, I was glued to the news and bombarded by insults and racist comments—statements like "Indians are bad" or "toiletless country" , "they should first learn hygiene
+"(many more things, i am just putting some mild ones down) were rampant on YouTube and other social media platforms, ften fueled by misinformation and amplified by bots and external influences. 
 
 I even tried defending my country in the comments as I loved my country(still do and will continue to work towards making it better) , not realizing how much time these toxic interactions were stealing from me,it seems silly but i was immature and it was my first interaction with social media. I wish someone guided me back then or atleast someone was there to protect me from the toxicity.
 
 The algorithms failed miserably at stopping hate speech or even fake news. I was constantly tormented/taunted by endless right-wing versus left-wing debates, leaving me in an identity crisis. Should I support a government that was allegedly destroying India or one that claimed to be improving it? This constant fear-mongering, mixed with relentless spins in opinions, not only wasted precious time but also took a toll on my mental health by alot. I still cant imagine how all these things are affecting youngsters even today.
 
-So when you posted on  LinkedIn about the need of empathy , it  ignited a hidden fire within me.
+So when you posted on LinkedIn about the need of empathy, it ignited a hidden fire within me.
 I just developed this platform within these 7 days with skills I had gained from previous projects
 This was the first time i used **blockchain and ai agents** , to build **Eternal Social**—a self-monitoring social media platform that integrates blockchain with AI to counter online toxicity.
 
