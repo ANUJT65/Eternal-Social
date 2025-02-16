@@ -29,17 +29,11 @@
 
 ### **My Motivation**
 
-In 12th grade during COVID, I was glued to the news and bombarded by insults and racist comments—statements like "Indians are bad" or "toiletless country" , "they should first learn hygiene
-"(many more things, i am just putting some mild ones down) were rampant on YouTube and other social media platforms, often fueled by misinformation and amplified by bots and external influences. Critisim should be there for all the things but it should be constructive and not outright rude/racist.
+In 12th grade during COVID, I was constantly exposed to news and social media, where misinformation and divisive narratives thrived. I noticed a surge in racist and hateful comments—baseless generalizations amplified by bots and external influences. Constructive criticism is necessary, but outright hostility only deepens divides.  
 
+At the time, I found myself engaging in online discussions, defending my country out of a sense of responsibility. However, I later realized how much time and energy these interactions drained, and how social media algorithms failed to curb misinformation and hate speech. The relentless political debates and fear-mongering created confusion, pulling people into echo chambers and deepening ideological divides.  
 
-I even tried defending my country in the comments as I loved my country(still do and will continue to work towards making it better) , not realizing how much time these toxic interactions were stealing from me,it seems silly but i was immature and it was my first interaction with social media. I wish someone guided me back then or atleast someone was there to protect me from the toxicity.
-
-The algorithms failed miserably at stopping hate speech or even fake news. I was constantly tormented/taunted by endless right-wing versus left-wing debates, leaving me in an identity crisis. Should I support a government that was allegedly destroying India or one that claimed to be improving it? This constant fear-mongering, mixed with relentless spins in opinions, not only wasted precious time but also took a toll on my mental health by alot. I still cant imagine how all these things are affecting youngsters even today.
-
-So when you posted on LinkedIn about the need of empathy,  it struck a deep chord with me. It reignited a fire I didn’t even realize was there.
-I just developed this platform within these 7 days with skills I had gained from previous projects
-This was the first time i used **blockchain and ai agents** , to build **Eternal Social**—a self-monitoring social media platform that integrates blockchain with AI to counter online toxicity.
+So when you posted on LinkedIn about the need for empathy, it resonated deeply. It reignited a fire I didn’t even realize was there. In just seven days, using skills I had gained from previous projects, I built **Eternal Social**—a self-monitoring social media platform integrating **blockchain and AI** to counter online toxicity.  
 
 As I matured, I realized that divisiveness wasn’t about truth at all—it was about serving hidden agendas. Even today, we witness riots sparked by fake news , countless lives shattered by deep fakes and social media remains a breeding ground for hate.
 
