@@ -101,12 +101,11 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 - AI **analyzes content credibility** using cross-referenced sources.  
 - Blockchain ensures **verified news sources** are immutable.  
 - Misinformation is flagged, and users are alerted before sharing.
-- AI bots **crawl & verify** trending news from trusted sources.  
-- Users can see a **trust score** for each news article.    
+ 
 
 #### 🎭 **3) Deep Fake Detection**  
-- AI scans images/videos for **manipulated media** using advanced detection models.   
-- Social platforms are alerted to **remove flagged content**.  
+- AI scans images/videos for **manipulated media** using Deep Learning models.   
+ 
 
 #### 💬 **4) Empathy Mode**  
 - Users can **enable Empathy Mode** to transform their messages into a more **positive and constructive tone**.  
