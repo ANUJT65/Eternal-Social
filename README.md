@@ -27,22 +27,6 @@
 
 
 
-### **My Motivation**
-
-In 12th grade during COVID, I was constantly exposed to news and social media, where misinformation and divisive narratives thrived. I noticed a surge in racist and hateful comments—baseless generalizations amplified by bots and external influences. Constructive criticism is necessary, but outright hostility only deepens divides.  
-
-At the time, I found myself engaging in online discussions, defending my country out of a sense of responsibility. However, I later realized how much time and energy these interactions drained, and how social media algorithms failed to curb misinformation and hate speech. The relentless political debates and fear-mongering created confusion, pulling people into echo chambers and deepening ideological divides.  
-
-So when you posted on LinkedIn about the need for empathy, it resonated deeply. It reignited a fire I didn’t even realize was there. In just seven days, using skills I had gained from previous projects, I built **Eternal Social**—a self-monitoring social media platform integrating **blockchain and AI** to counter online toxicity.  
-
-As I matured, I realized that divisiveness wasn’t about truth at all—it was about serving hidden agendas. Even today, we witness riots sparked by fake news , countless lives shattered by deep fakes and social media remains a breeding ground for hate.
-
-We often talk about ending racism, hate speech etc...we have the technology to do it...yet we dont. The end of racism starts from ending racism on social media, i feel like we have the tools, we have the money but we dont really have the will to end it. 
-
-This revelation made me even more determined to create a space where empathy and transparency can win over hate and manipulation of facts. Though still a work in progress, I believe Eternal Social will pave the way for a safer, more compassionate digital future.
-
----
-
 ### **Introduction**
 **Eternal Social** is a next-generation social media platform where **AI regulates user interactions**, and **blockchain ensures AI's accountability**. Unlike traditional moderation methods that rely on human intervention, Eternal Social leverages **decentralized AI moderation** to maintain transparency, fairness, and accuracy and accountability of the system. Which in turn reduces the need for manual intervention and would help social media platforms regulate themselves by autonomous systems.
 
@@ -57,29 +41,6 @@ To counter disinformation, we use **deep learning models trained on custom datas
 
 ---
 
-## 🤔 Why Should Social Media Integrate This❓❓  
-### **Future of social media:**
-The **future of social media moderation** will be entirely **AI-driven**, eliminating the need for human intervention in content monitoring. AI will autonomously handle:  
-- **Reputation scoring** based on user behavior.  
-- **Fake news detection** through AI-powered cross-referencing.  
-- **Deepfake identification** using advanced deep learning models.  
-
-## 🌐 **Why Blockchain? And Why This System?** 🌐⛓️ 
-
-AI must be **held accountable**, which is why **blockchain integration** is essential. By recording moderation actions on an **immutable ledger**, Eternal Social ensures:  
-
-- **Transparent AI decisions** – Once AI moderates content, its action is permanently recorded, preventing hidden censorship or biased alterations.  
-- **Decentralized moderation** – Instead of relying on a single company’s rules, blockchain allows a distributed, tamper-proof record of moderation, reducing corporate or political influence.  
-- **Preventing historical manipulation** – **People often dig up old posts to manipulate narratives or incite violence. Blockchain can timestamp and verify context, ensuring old content isn't misused.**  
-- **Curbing fake engagements** – **Bots and paid accounts artificially amplify hate speech and misinformation. With blockchain, interactions can be verified, reducing manipulation.**  
-- **Cost-efficient enforcement** – By replacing expensive manual moderation with AI-backed blockchain verification, social media companies can cut costs while improving trust.  
-- **A safer online space** – Users can verify whether flagged content was genuinely harmful or if it was unjustly censored, restoring confidence in online discourse.  
-
-Blockchain isn't just about decentralization—it’s about **preserving truth, ensuring transparency, and protecting users from digital manipulation.**
-
-Eternal Social **redefines content moderation** by merging AI efficiency with blockchain security—creating a **scalable, fair, and self-regulating social ecosystem**.  
-
----
 
 ## 🚀 User Flow and System Architecture (Please do zoom in if you would like)
 
@@ -112,6 +73,31 @@ Drive Link to view image: https://drive.google.com/file/d/1yOxxysPSt3xuhcp4CZO6T
 - Whether it's **criticism, professional discussions, or personal conversations**, the goal is to **foster respectful communication** without restricting emotions.  
 - Ensures that **everyone is treated with dignity**, promoting a **healthier online environment**.  
 - **Completely optional**—users can choose when to activate it for empathetic interactions.   
+---
+
+
+## 🤔 Why Should Social Media Integrate This❓❓  
+### **Future of social media:**
+The **future of social media moderation** will be entirely **AI-driven**, eliminating the need for human intervention in content monitoring. AI will autonomously handle:  
+- **Reputation scoring** based on user behavior.  
+- **Fake news detection** through AI-powered cross-referencing.  
+- **Deepfake identification** using advanced deep learning models.  
+
+## 🌐 **Why Blockchain? And Why This System?** 🌐⛓️ 
+
+AI must be **held accountable**, which is why **blockchain integration** is essential. By recording moderation actions on an **immutable ledger**, Eternal Social ensures:  
+
+- **Transparent AI decisions** – Once AI moderates content, its action is permanently recorded, preventing hidden censorship or biased alterations.  
+- **Decentralized moderation** – Instead of relying on a single company’s rules, blockchain allows a distributed, tamper-proof record of moderation, reducing corporate or political influence.  
+- **Preventing historical manipulation** – **People often dig up old posts to manipulate narratives or incite violence. Blockchain can timestamp and verify context, ensuring old content isn't misused.**  
+- **Curbing fake engagements** – **Bots and paid accounts artificially amplify hate speech and misinformation. With blockchain, interactions can be verified, reducing manipulation.**  
+- **Cost-efficient enforcement** – By replacing expensive manual moderation with AI-backed blockchain verification, social media companies can cut costs while improving trust.  
+- **A safer online space** – Users can verify whether flagged content was genuinely harmful or if it was unjustly censored, restoring confidence in online discourse.  
+
+Blockchain isn't just about decentralization—it’s about **preserving truth, ensuring transparency, and protecting users from digital manipulation.**
+
+Eternal Social **redefines content moderation** by merging AI efficiency with blockchain security—creating a **scalable, fair, and self-regulating social ecosystem**.  
+
 ---
 
 ## 🛠️ Tech Stack  
